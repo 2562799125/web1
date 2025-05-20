@@ -1,0 +1,36 @@
+/* 全局样式 */
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+/* 链接样式 */
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* 新闻列表样式 */
+.news-list li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2;
+}
+
+/* 轮播图样式 */
+.swiper-container {
+    width: 100%;
+    height: 400px;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+}
