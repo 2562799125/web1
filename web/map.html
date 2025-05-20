@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红色文化地图 - 红桥筑梦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: calc(100vh - 64px);
+            width: 100%;
+            z-index: 1;
+        }
+        .site-info {
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+        .map-overlay {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* 标记点击效果 */
+        .marker-animation {
+            animation: markerPop 0.3s ease-out;
+            transform-origin: bottom center;
+        }
+        
+        @keyframes markerPop {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        .leaflet-marker-icon {
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .leaflet-marker-icon:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- 顶部导航 -->
+    <nav class="bg-red-800 text-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        <span>返回首页</span>
+                    </a>
+                    <h1 class="text-xl font-bold">红色文化地图</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="showListBtn" class="px-4 py-2 bg-red-700 rounded hover:bg-red-600 transition-colors">
+                        显示地点列表
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 地图容器 -->
+    <div class="relative">
+        <div id="map"></div>
+        
+        <!-- 地点列表侧边栏 -->
+        <div id="siteList" class="hidden fixed top-16 right-0 w-96 h-full bg-white shadow-lg z-10">
+            <div class="p-4 bg-red-800 text-white">
+                <h2 class="text-lg font-bold">红色地点</h2>
+            </div>
+            <div class="site-info p-4 space-y-4">
+                <!-- 井冈山 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-red-800">井冈山</h3>
+                    <p class="text-gray-600 text-sm mt-2 mb-3">中国革命的第一个农村革命根据地，被誉为"中国革命的摇篮"。</p>
+                    <div class="flex space-x-2">
+                        <button onclick="flyToLocation(26.5786, 114.1587, '井冈山')" class="flex items-center px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                            查看位置
+                        </button>
+                        <a href="https://www.720yun.com/t/41vksh8y0dl?scene_id=49527035" target="_blank" class="flex items-center px-3 py-1 bg-red-800 text-white rounded hover:bg-red-700 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            VR全景
+                        </a>
+                    </div>
+                </div>
+                <!-- 延安 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-red-800">延安</h3>
+                    <p class="text-gray-600 text-sm mt-2 mb-3">中共中央所在地，是中国革命的圣地。</p>
+                    <div class="flex space-x-2">
+                        <button onclick="flyToLocation(36.5852, 109.4894, '延安')" class="flex items-center px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                            查看位置
+                        </button>
+                        <a href="https://www.720yun.com/t/33vkimdhppq?scene_id=36543800" target="_blank" class="flex items-center px-3 py-1 bg-red-800 text-white rounded hover:bg-red-700 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            VR全景
+                        </a>
+                    </div>
+                </div>
+                <!-- 遵义会议会址 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-red-800">遵义会议会址</h3>
+                    <p class="text-gray-600 text-sm mt-2 mb-3">位于贵州省遵义市红花岗区子尹路96号，1935年1月15日至17日，中共中央政治局在此召开扩大会议，确立了毛泽东在党和红军中的领导地位。</p>
+                    <div class="flex space-x-2">
+                        <button onclick="flyToLocation(27.6869, 106.9074, '遵义会议会址')" class="flex items-center px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                            查看位置
+                        </button>
+                        <a href="https://www.720yun.com/t/9012exff9n6?scene_id=11313617" target="_blank" class="flex items-center px-3 py-1 bg-red-800 text-white rounded hover:bg-red-700 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            VR全景
+                        </a>
+                    </div>
+                </div>
+                <!-- 西柏坡 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-red-800">西柏坡</h3>
+                    <p class="text-gray-600 text-sm mt-2 mb-3">"新中国从这里走来"，是解放战争时期中共中央的指挥中心。</p>
+                    <div class="flex space-x-2">
+                        <button onclick="flyToLocation(38.3462, 113.8472, '西柏坡')" class="flex items-center px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                            查看位置
+                        </button>
+                        <a href="https://www.720yun.com/t/166jr5sy5m1?scene_id=25831434n/vr/" target="_blank" class="flex items-center px-3 py-1 bg-red-800 text-white rounded hover:bg-red-700 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            VR全景
+                        </a>
+                    </div>
+                </div>
+                <!-- 南昌 -->
+                <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-red-800">南昌</h3>
+                    <p class="text-gray-600 text-sm mt-2 mb-3">南昌起义爆发地，是中国人民解放军的摇篮。</p>
+                    <div class="flex space-x-2">
+                        <button onclick="flyToLocation(28.6820, 115.8579, '南昌')" class="flex items-center px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
+                            查看位置
+                        </button>
+                        <a href="https://www.720yun.com/t/7222bw8Oqe6?scene_id=45683403com/vr/" target="_blank" class="flex items-center px-3 py-1 bg-red-800 text-white rounded hover:bg-red-700 transition-colors">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            VR全景
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化地图
+        const map = L.map('map').setView([35.8617, 104.1954], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 定义红色标记图标
+        const redIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // 添加地标点
+        const locations = [
+            { 
+                name: '井冈山',
+                lat: 26.5786, 
+                lng: 114.1587, 
+                desc: '中国革命的第一个农村革命根据地',
+                address: '江西省吉安市井冈山市茨坪镇',
+                image: 'a.jpeg',
+                vrUrl: 'https://www.720yun.com/t/41vksh8y0dl?scene_id=49527035'
+            },
+            { 
+                name: '延安', 
+                lat: 36.5852, 
+                lng: 109.4894, 
+                desc: '中共中央所在地，革命圣地',
+                address: '陕西省延安市宝塔区枣园路',
+                image: 'b.jpeg',
+                vrUrl: 'https://www.720yun.com/t/33vkimdhppq?scene_id=36543800'
+            },
+            { 
+                name: '遵义会议会址', 
+                lat: 27.6869, 
+                lng: 106.9074, 
+                desc: '遵义会议会址位于贵州省遵义市红花岗区子尹路96号，是中国共产党历史上一个生死攸关的转折点',
+                address: '贵州省遵义市红花岗区子尹路96号',
+                image: 'c.jpeg',
+                vrUrl: 'https://www.720yun.com/t/9012exff9n6?scene_id=11313617'
+            },
+            { 
+                name: '西柏坡', 
+                lat: 38.3462, 
+                lng: 113.8472, 
+                desc: '解放战争时期指挥中心',
+                address: '河北省石家庄市平山县西柏坡镇',
+                image: '长1.png.webp',
+                vrUrl: 'https://www.720yun.com/t/166jr5sy5m1?scene_id=25831434n/vr/'
+            },
+            { 
+                name: '南昌', 
+                lat: 28.6820, 
+                lng: 115.8579, 
+                desc: '南昌起义爆发地',
+                address: '江西省南昌市东湖区中山路380号',
+                image: '长2.jpeg',
+                vrUrl: 'https://www.720yun.com/t/7222bw8Oqe6?scene_id=45683403com/vr/'
+            }
+        ];
+
+        locations.forEach(loc => {
+            const popupContent = `
+                <div class="popup-content bg-white shadow-lg rounded-lg" style="min-width: 320px;">
+                    <div class="relative w-full h-48 overflow-hidden rounded-t-lg">
+                        <img src="${loc.image}" class="w-full h-full object-cover" alt="${loc.name}">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                            <h3 class="text-xl font-bold text-white mb-1">${loc.name}</h3>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 text-sm leading-relaxed mb-4">${loc.desc}</p>
+                        <div class="flex items-start space-x-2 mb-4 bg-gray-50 p-3 rounded-lg">
+                            <svg class="w-5 h-5 mt-0.5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <p class="text-gray-600 text-sm">${loc.address}</p>
+                        </div>
+                    <a href="${loc.vrUrl}" target="_blank" 
+                        class="group w-full flex items-center justify-center bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors">
+                        <svg class="w-6 h-6 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        开始VR全景游览
+                    </a>
+                </div>
+            `;
+            const marker = L.marker([loc.lat, loc.lng], {icon: redIcon})
+                .bindPopup(popupContent)
+                .addTo(map);
+            
+            // 添加点击动画效果
+            marker.getElement().addEventListener('click', function(e) {
+                // 移除之前的动画
+                this.classList.remove('marker-animation');
+                // 触发重排以重新开始动画
+                void this.offsetWidth;
+                // 添加动画类
+                this.classList.add('marker-animation');
+            });
+        });
+
+        // 切换地点列表显示
+        const showListBtn = document.getElementById('showListBtn');
+        const siteList = document.getElementById('siteList');
+        showListBtn.addEventListener('click', () => {
+            siteList.classList.toggle('hidden');
+            showListBtn.textContent = siteList.classList.contains('hidden') ? '显示地点列表' : '隐藏地点列表';
+        });
+
+        // 飞行到指定位置
+        function flyToLocation(lat, lng, name) {
+            map.flyTo([lat, lng], 12, {
+                duration: 1.5
+            });
+            // 打开对应的标记弹窗
+            map.eachLayer((layer) => {
+                if (layer instanceof L.Marker) {
+                    const latLng = layer.getLatLng();
+                    if (latLng.lat === lat && latLng.lng === lng) {
+                        layer.openPopup();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
