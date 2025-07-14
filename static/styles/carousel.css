@@ -1,0 +1,34 @@
+.carousel-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: block;
+  width: 100% !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.carousel-item {
+  display: none;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+/* 隐藏导航按钮 */
+.carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
+
+/* 隐藏指示器点 */
+.carousel-indicators {
+  display: none;
+}

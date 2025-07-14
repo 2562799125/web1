@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>中心概况 - 红桥筑梦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- 顶部横幅和导航可复用首页结构 -->
+    <header class="bg-white py-4" style="background-image: url('tiananmen.jpg'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.75); background-blend-mode: overlay;">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="制作红桥筑梦 logo.png" alt="Logo" class="h-16">
+                <h1 class="text-3xl font-bold text-red-800 ml-4">红桥筑梦</h1>
+            </div>
+        </div>
+    </header>
+    <nav class="bg-red-800 text-white shadow-md">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-start space-x-8">
+                <li class="py-3 hover:bg-red-700 px-4"><a href="index.html">首页</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="about.html">中心概况</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="news.html">新闻动态</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="education.html">教育培训</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#research">研究成果</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#resources">资源共享</a></li>
+                <li class="py-3 hover:bg-yellow-600 px-4"><a href="write.html">编写</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto mt-10 max-w-3xl">
+        <h2 class="text-2xl font-bold text-red-800 mb-6">中心概况</h2>
+        <div class="mb-6 flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0">
+    <input type="file" id="imageInput" accept="image/*" class="border rounded px-2 py-1">
+    <input type="file" id="videoInput" accept="video/*" class="border rounded px-2 py-1">
+    <button id="uploadBtn" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-700">上传并发布</button>
+</div>
+        <div id="articleList"></div>
+    </div>
+    <footer class="bg-red-800 text-white mt-8 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>版权所有 © 2023 红色文化传承基地 | 联系电话：xxx-xxxxxxxx</p>
+        </div>
+    </footer>
+    <script>
+    window.onload = async function() {
+        const apiUrl = 'https://my-website-backend-xz5o.onrender.com/api/articles';
+        const res = await fetch(apiUrl);
+        const articles = await res.json();
+        const list = document.getElementById('articleList');
+        list.innerHTML = articles
+            .filter(a => a.section === '中心概况')
+            .map(a => `
+                <div class="bg-white rounded shadow p-4 mb-4">
+                    <h3 class="text-xl font-bold text-red-800">${a.title}</h3>
+                    <div class="text-gray-800 mb-2">${a.content}</div>
+                    ${a.images && a.images.length ? a.images.map(img => `<img src="${img}" class="my-2 max-w-full rounded">`).join('') : ''}
+                    ${a.videos && a.videos.length ? a.videos.map(v => `<video src="${v}" controls class="my-2 max-w-full rounded"></video>`).join('') : ''}
+                </div>
+            `).join('');
+    };
+    document.getElementById('uploadBtn').onclick = async function() {
+    const imageFile = document.getElementById('imageInput').files[0];
+    const videoFile = document.getElementById('videoInput').files[0];
+    let imageUrl = '', videoUrl = '';
+
+    // 上传图片
+    if (imageFile) {
+        const formData = new FormData();
+        formData.append('file', imageFile);
+        const res = await fetch('https://my-website-backend-xz5o.onrender.com/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if (data.success) imageUrl = data.url;
+        else { alert('图片上传失败'); return; }
+    }
+
+    // 上传视频
+    if (videoFile) {
+        const formData = new FormData();
+        formData.append('file', videoFile);
+        const res = await fetch('https://my-website-backend-xz5o.onrender.com/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if (data.success) videoUrl = data.url;
+        else { alert('视频上传失败'); return; }
+    }
+
+    // 发布文章（可自定义标题和内容，这里用默认）
+    const section = '中心概况'; // 当前板块
+    const title = '新上传的多媒体内容';
+    const content = '包含图片和/或视频';
+    const res = await fetch('https://my-website-backend-xz5o.onrender.com/api/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title,
+            content,
+            section,
+            images: imageUrl ? [imageUrl] : [],
+            videos: videoUrl ? [videoUrl] : []
+        })
+    });
+    const data = await res.json();
+    if (data.success) {
+        alert('上传并发布成功！');
+        window.location.reload();
+    } else {
+        alert('发布失败');
+    }
+};
+    </script>
+</body>
+</html> 

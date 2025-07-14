@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红桥筑梦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- 顶部横幅 -->
+    <div class="bg-red-800 h-2 w-full"></div>
+    
+    <!-- 标题区域 -->
+    <header class="bg-white py-4" style="background-image: url('tiananmen.jpg'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.75); background-blend-mode: overlay;">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="制作红桥筑梦 logo.png" alt="Logo" class="h-16">
+                <h1 class="text-3xl font-bold text-red-800 ml-4">红桥筑梦</h1>
+            </div>
+            <div class="hidden md:block">
+                <form class="flex">
+                    <input type="text" class="border px-4 py-2 rounded-l" placeholder="搜索...">
+                    <button class="bg-red-800 text-white px-6 py-2 rounded-r">搜索</button>
+                </form>
+            </div>
+            <!-- 登录按钮/用户信息 -->
+            <div id="userArea" class="ml-4">
+                <button id="loginBtn" class="px-6 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium">登录</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航菜单 -->
+    <nav class="bg-red-800 text-white shadow-md">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-start space-x-8">
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#home">首页</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="about.html">中心概况</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="news.html">新闻动态</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="education.html">教育培训</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#research">研究成果</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#resources">资源共享</a></li>
+                <li class="py-3 hover:bg-red-700 px-4">
+                    <a href="map.html" class="flex items-center space-x-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                        <span>红色地图</span>
+                    </a>
+                </li>
+                <li class="py-3 hover:bg-yellow-600 px-4">
+                    <a href="write.html" class="flex items-center space-x-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 3.5a2.121 2.121 0 113 3L7 19.5 3 21l1.5-4L16.5 3.5z" />
+                        </svg>
+                        <span>编写</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 轮播图区域 -->
+    <div class="container mx-auto mt-4">
+        <div class="grid grid-cols-4 gap-4">
+            <!-- 左侧大图 -->
+            <div class="col-span-3">
+                <div class="swiper h-96 rounded overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="长1.png.webp" alt="轮播图1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="长2.jpeg" alt="轮播图2" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <!-- 右侧快速入口 -->
+            <div class="space-y-4">
+                <div class="bg-red-800 text-white p-4 rounded">
+                    <h3 class="text-lg font-bold mb-2">快速入口</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-yellow-200">通知公告</a></li>
+                        <li><a href="#" class="hover:text-yellow-200">政策文件</a></li>
+                        <li><a href="#" class="hover:text-yellow-200">下载中心</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个性化推荐区域 -->
+    <div class="container mx-auto mt-8">
+        <div class="bg-white rounded-lg p-6 shadow-lg" style="background-image: url('juzizhou.webp'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.7);">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-red-800">专属推荐</h2>
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-600">欢迎回来，红色文化探索者</span>
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+                <!-- 长征故事推荐 -->
+                <div class="bg-gray-50 rounded-lg p-4 transition duration-300 hover:shadow-md">
+                    <img src="a.jpeg" alt="长征女战士" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-lg font-bold text-red-800 mb-2">《长征中的女战士》专题</h3>
+                    <p class="text-gray-600 mb-4">深入了解长征途中巾帼英雄们的感人故事，重温她们为革命事业奋斗的光辉历程。</p>
+                    <a href="http://dangshi.people.com.cn/n1/2016/0727/c85037-28587586.html" target="_blank" class="text-red-800 hover:text-red-600 flex items-center">
+                        阅读详情
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- VR研学推荐 -->
+                <div class="bg-gray-50 rounded-lg p-4 transition duration-300 hover:shadow-md">
+                    <img src="b.jpeg" alt="烽火抗战" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-lg font-bold text-red-800 mb-2">烽火抗战VR体验</h3>
+                    <p class="text-gray-600 mb-4">穿越时空，身临其境体验抗战历史，感受先辈们保家卫国的壮烈情怀。</p>
+                    <a href="https://www.1937china.com/kzgdata/clzl/vrzl/qqztvr2024/#/" target="_blank" class="text-red-800 hover:text-red-600 flex items-center">
+                        开启VR之旅
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- 影视推荐 -->
+                <div class="bg-gray-50 rounded-lg p-4 transition duration-300 hover:shadow-md">
+                    <img src="c.jpeg" alt="觉醒年代" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-lg font-bold text-red-800 mb-2">《觉醒年代》精选片段</h3>
+                    <p class="text-gray-600 mb-4">重温波澜壮阔的历史画卷，感受先驱者的家国情怀与理想信念。
+                        
+                    </p>
+                    <a href="https://tv.cctv.cn/2023/07/10/VIDEMhnemmXY7j3zJmuc5ySz230710.shtml" target="_blank" class="text-red-800 hover:text-red-600 flex items-center">
+                        观看片段
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新闻动态区域 -->
+    <div class="container mx-auto mt-8">
+        <div class="grid grid-cols-3 gap-6">
+            <!-- 中心要闻 -->
+            <div class="bg-white rounded p-4">
+                <h2 class="text-xl font-bold text-red-800 border-b pb-2 mb-4">中心要闻</h2>
+                <ul class="space-y-2">
+                    <li class="flex justify-between">
+                        <a href="#" class="hover:text-red-800">红色文化传承活动圆满结束</a>
+                        <span class="text-gray-500">2023-10-01</span>
+                    </li>
+                    <!-- ... 更多新闻项 ... -->
+                </ul>
+            </div>
+            
+            <!-- 通知公告 -->
+            <div class="bg-white rounded p-4">
+                <h2 class="text-xl font-bold text-red-800 border-b pb-2 mb-4">通知公告</h2>
+                <ul class="space-y-3">
+                    <li class="flex justify-between items-start">
+                        <a href="#" class="hover:text-red-800 flex-1">关于网站VR体验专区全新升级的通知</a>
+                        <span class="text-gray-500 text-sm ml-2 whitespace-nowrap">2025-05-18</span>
+                    </li>
+                    <li class="flex justify-between items-start">
+                        <a href="#" class="hover:text-red-800 flex-1">红色文化数字资源库系统维护升级公告</a>
+                        <span class="text-gray-500 text-sm ml-2 whitespace-nowrap">2025-05-15</span>
+                    </li>
+                    <li class="flex justify-between items-start">
+                        <a href="#" class="hover:text-red-800 flex-1">网站新增"烽火抗战"主题VR体验功能上线通知</a>
+                        <span class="text-gray-500 text-sm ml-2 whitespace-nowrap">2025-05-10</span>
+                    </li>
+                    <li class="flex justify-between items-start">
+                        <a href="#" class="hover:text-red-800 flex-1">红色经典阅读推荐系统功能优化公告</a>
+                        <span class="text-gray-500 text-sm ml-2 whitespace-nowrap">2025-05-08</span>
+                    </li>
+                    <li class="flex justify-between items-start border-t pt-3 mt-3">
+                        <a href="#" class="hover:text-red-800 flex items-center text-red-800">
+                            查看更多公告
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <span class="text-gray-500 text-sm ml-2"></span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 学习资料 -->
+            <div class="bg-white rounded p-4">
+                <h2 class="text-xl font-bold text-red-800 border-b pb-2 mb-4">学习资料</h2>
+                <div class="space-y-4">
+                    <!-- 红色经典书籍推荐 -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-red-700 mb-3">红色经典书籍</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <img src="长征.webp" alt="长征" class="w-12 h-16 object-cover rounded">
+                                    <div>
+                                        <a href="hhttps://www.douluodalu.cc/book/3147/" target="_blank" class="text-gray-800 hover:text-red-800">《长征》</a>
+                                        <p class="text-sm text-gray-500">王树增著</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">推荐</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <img src="星火燎原.png" alt="星火燎原" class="w-12 h-16 object-cover rounded">
+                                    <div>
+                                        <a href="http://www.chicming.cn/index.php/Home/ShowArticle/index/id/10366" target="_blank" class="text-gray-800 hover:text-red-800">《星火燎原》丛书</a>
+                                        <p class="text-sm text-gray-500">解放军出版社</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">经典</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <img src="红岩.webp" alt="红岩" class="w-12 h-16 object-cover rounded">
+                                    <div>
+                                        <a href="http://www.zgdsw.org.cn/n1/2019/0122/c244522-30587121.html" target="_blank" class="text-gray-800 hover:text-red-800">《红岩》</a>
+                                        <p class="text-sm text-gray-500">罗广斌、杨益言著</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">必读</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <img src="钢铁是怎样练成的.jpg" alt="钢铁是怎样炼成的" class="w-12 h-16 object-cover rounded">
+                                    <div>
+                                        <a href="http://www.zgdsw.org.cn/n1/2021/0629/c244522-32143431.html" target="_blank" class="text-gray-800 hover:text-red-800">《钢铁是怎样炼成的》</a>
+                                        <p class="text-sm text-gray-500">奥斯特洛夫斯基著</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">珍藏</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 text-center">
+                            <a href="https://www.nlc.cn/web/ziyuanfuwu/ziyuantuijian/sktj/zttj/jd100/fsmr/index_1.shtml" 
+                               target="_blank" 
+                               class="inline-flex items-center px-6 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition duration-300">
+                                <span>探索更多红色经典</span>
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部版权信息 -->
+    <footer class="bg-red-800 text-white mt-8 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>版权所有 © 2023 红色文化传承基地 | 联系电话：xxx-xxxxxxxx</p>
+        </div>
+    </footer>
+
+    <!-- AI助手悬浮按钮 -->
+    <button id="aiButton" class="fixed bottom-8 right-8 bg-red-800 text-white rounded-full p-4 shadow-xl hover:bg-red-700 transition-all duration-300 flex items-center space-x-2 scale-110 hover:scale-125 z-50">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+        </svg>
+        <span class="text-lg font-medium">小桥AI助手</span>
+    </button>
+
+    <!-- AI聊天对话框 -->
+    <div id="aiChatbox" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] bg-white rounded-lg shadow-2xl hidden z-50 flex flex-col h-[600px] max-h-[80vh]">
+        <div class="p-4 bg-red-800 text-white rounded-t-lg flex justify-between items-center flex-shrink-0">
+            <h3 class="font-bold flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                小桥AI助手
+            </h3>
+            <button id="closeAiChat" class="hover:text-gray-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div id="chatMessages" class="flex-grow overflow-y-auto p-4 space-y-4 scroll-smooth overscroll-contain" style="scrollbar-width: thin; scrollbar-color: #991b1b #f3f4f6; max-height: calc(80vh - 140px);">
+            <!-- 欢迎消息 -->
+            <div class="flex items-start">
+                <div class="flex-shrink-0 bg-red-100 rounded-full p-2">
+                    <svg class="w-6 h-6 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div class="ml-3 bg-gray-100 rounded-lg p-3 max-w-[80%] transform transition-all duration-300 ease-out translate-y-0">
+                    <p>你好！我是小桥，很高兴为您服务。我可以帮您了解红色文化、推荐相关书籍和资料，或者回答您的其他问题。</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t bg-white flex-shrink-0">
+            <form id="chatForm" class="flex space-x-2">
+                <input type="text" id="userInput" class="flex-1 border rounded-lg px-4 py-3 focus:outline-none focus:border-red-800 focus:ring-2 focus:ring-red-800 focus:ring-opacity-50" placeholder="请输入您的问题...">
+                <button type="submit" class="bg-red-800 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium">
+                    发送
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 图片放大模态框 -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="relative max-w-4xl mx-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <img id="modalImage" src="" alt="放大图片" class="max-h-[90vh] max-w-[90vw] object-contain">
+        </div>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-96 p-8 relative flex flex-col items-center">
+            <button id="closeLoginModal" class="absolute top-4 right-4 text-gray-400 hover:text-red-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h2 class="text-2xl font-bold text-red-800 mb-6">用户登录</h2>
+            <form id="loginForm" class="w-full flex flex-col space-y-4">
+                <input type="text" id="loginUsername" class="border rounded px-4 py-2 focus:outline-none focus:border-red-800" placeholder="用户名" required>
+                <input type="password" id="loginPassword" class="border rounded px-4 py-2 focus:outline-none focus:border-red-800" placeholder="密码" required>
+                <button type="submit" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors font-medium">登录</button>
+            </form>
+            <p id="loginError" class="text-red-600 mt-4 hidden">用户名或密码错误</p>
+        </div>
+    </div>
+    <!-- 头像上传隐藏input -->
+    <input type="file" id="avatarInput" accept="image/*" class="hidden" />
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // 轮播图初始化
+        new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            }
+        });
+
+        // 图片放大功能
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        // 给轮播图中的图片添加点击事件
+        document.querySelectorAll('.swiper-slide img').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.onclick = function() {
+                openModal(this.src);
+            }
+        });
+
+        function openModal(imgSrc) {
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击模态框背景关闭
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // AI助手相关脚本
+        const aiButton = document.getElementById('aiButton');
+        const aiChatbox = document.getElementById('aiChatbox');
+        const closeAiChat = document.getElementById('closeAiChat');
+        const chatForm = document.getElementById('chatForm');
+        const userInput = document.getElementById('userInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // 点击AI助手按钮
+        aiButton.onclick = function() {
+            aiChatbox.classList.toggle('hidden');
+            aiChatbox.classList.toggle('flex');
+            if (!aiChatbox.classList.contains('hidden')) {
+                setTimeout(() => {
+                    // 自动滚动到底部
+                    aiChatbox.scrollTop = aiChatbox.scrollHeight;
+                }, 100);
+            }
+        }
+
+        // 关闭AI聊天框
+        closeAiChat.onclick = function() {
+            aiChatbox.classList.add('hidden');
+            aiChatbox.classList.remove('flex');
+        }
+
+        // 提交聊天表单
+        chatForm.onsubmit = async function(e) {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // 添加用户消息到对话框
+            addMessage(message, true);
+            userInput.value = '';
+
+            // 显示加载状态
+            const loadingMessage = addLoadingMessage();
+
+            try {
+                // 这里替换为实际的豆包API调用
+                const response = await mockAIResponse(message);
+                
+                // 移除加载消息
+                loadingMessage.remove();
+                
+                // 添加AI响应
+                addMessage(response, false);
+            } catch (error) {
+                loadingMessage.remove();
+                addMessage('抱歉，我遇到了一些问题，请稍后再试。', false);
+            }
+
+            // 平滑滚动到底部
+            const lastMessage = chatMessages.lastElementChild;
+            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        // 添加消息到对话框
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start' + (isUser ? ' justify-end' : '');
+            
+            const iconColor = isUser ? 'bg-red-800' : 'bg-red-100';
+            const textBg = isUser ? 'bg-red-800 text-white' : 'bg-gray-100 text-gray-800';
+            const iconClass = isUser ? 'text-white' : 'text-red-800';
+
+            messageDiv.innerHTML = `
+                <div class="flex items-start ${isUser ? 'flex-row-reverse' : ''} opacity-0 transform translate-y-2">
+                    <div class="flex-shrink-0 ${iconColor} rounded-full p-2">
+                        <svg class="w-6 h-6 ${iconClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="${isUser ? 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' : 'M13 10V3L4 14h7v7l9-11h-7z'}" />
+                        </svg>
+                    </div>
+                    <div class="mx-3 ${textBg} rounded-lg p-3 max-w-[80%]">
+                        <p>${text}</p>
+                    </div>
+                </div>
+            `;
+            
+            // 添加动画效果
+            requestAnimationFrame(() => {
+                const element = messageDiv.firstElementChild;
+                element.style.transition = 'all 0.3s ease-out';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            });
+            
+            chatMessages.appendChild(messageDiv);
+        }
+
+        // 添加加载消息
+        function addLoadingMessage() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'flex items-start';
+            loadingDiv.innerHTML = `
+                <div class="flex-shrink-0 bg-red-100 rounded-full p-2">
+                    <svg class="w-6 h-6 text-red-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div class="ml-3 bg-gray-100 rounded-lg p-3">
+                    <p class="flex items-center">
+                        <span class="animate-pulse">思考中</span>
+                        <span class="ml-1 animate-bounce">.</span>
+                        <span class="ml-1 animate-bounce delay-100">.</span>
+                        <span class="ml-1 animate-bounce delay-200">.</span>
+                    </p>
+                </div>
+            `;
+            chatMessages.appendChild(loadingDiv);
+            return loadingDiv;
+        }
+
+        // 模拟AI响应（临时使用，后续替换为实际的豆包API）
+        async function mockAIResponse(message) {
+            // 模拟API延迟
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // 简单的关键词响应模拟
+            if (message.includes('长征')) {
+                return '长征是中国工农红军长征的简称，是中国共产党领导红军所进行的战略转移。这是一个充满艰辛但又光荣的历史篇章。我可以为您推荐一些相关的红色经典读物，比如《长征》、《星火燎原》等。';
+            } else if (message.includes('红色文化')) {
+                return '红色文化是中国共产党在革命和建设实践中形成的先进文化。它包含了革命精神、革命传统和革命经验等重要内容。您可以通过我们网站的"学习资料"板块了解更多相关内容。';
+            } else {
+                return '感谢您的提问。作为红色文化传承的AI助手，我很乐意为您提供相关的信息和帮助。您可以具体询问关于红色历史、革命故事、红色经典著作等方面的问题。';
+            }
+        }
+
+        // 登录模态框脚本
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const userArea = document.getElementById('userArea');
+        const avatarInput = document.getElementById('avatarInput');
+        let isLoggedIn = false;
+        let currentUser = { name: '', nickname: '', avatar: '', token: '' };
+
+        // 登录后渲染用户信息
+        function renderUserArea() {
+            if (isLoggedIn) {
+                userArea.innerHTML = `
+                    <div class="flex items-center space-x-2 cursor-pointer group" id="userProfile">
+                        <img id="userAvatar" src="${currentUser.avatar || 'https://i.pravatar.cc/48?img=3'}" alt="头像" class="w-10 h-10 rounded-full border-2 border-red-800 object-cover hover:opacity-80 transition" />
+                        <span class="text-red-800 font-bold max-w-[100px] truncate" title="${currentUser.nickname}">${currentUser.nickname}</span>
+                    </div>
+                `;
+                document.getElementById('userAvatar').onclick = function() {
+                    avatarInput.click();
+                };
+            } else {
+                userArea.innerHTML = `<button id="loginBtn" class="px-6 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium">登录</button>`;
+                document.getElementById('loginBtn').onclick = function() {
+                    loginModal.classList.remove('hidden');
+                    loginModal.classList.add('flex');
+                };
+            }
+        }
+
+        // 初始渲染
+        renderUserArea();
+
+        // 登录按钮事件（首次页面加载时）
+        // 由renderUserArea动态绑定
+
+        closeLoginModal.onclick = function() {
+            loginModal.classList.add('hidden');
+            loginModal.classList.remove('flex');
+            loginError.classList.add('hidden');
+        }
+        loginForm.onsubmit = async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    isLoggedIn = true;
+                    currentUser = {
+                        name: data.username || username,
+                        nickname: data.nickname || username,
+                        avatar: data.avatarUrl || '',
+                        token: data.token
+                    };
+                    localStorage.setItem('token', data.token);
+                    loginModal.classList.add('hidden');
+                    loginModal.classList.remove('flex');
+                    loginError.classList.add('hidden');
+                    renderUserArea();
+                } else {
+                    loginError.classList.remove('hidden');
+                }
+            } catch {
+                loginError.classList.remove('hidden');
+            }
+        }
+        // ESC键关闭登录模态框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !loginModal.classList.contains('hidden')) {
+                loginModal.classList.add('hidden');
+                loginModal.classList.remove('flex');
+                loginError.classList.add('hidden');
+            }
+        });
+
+        // 头像上传逻辑
+        avatarInput.onchange = async function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const formData = new FormData();
+                formData.append('avatar', file);
+                try {
+                    const res = await fetch('/api/upload-avatar', {
+                        method: 'POST',
+                        headers: { 'Authorization': 'Bearer ' + currentUser.token },
+                        body: formData
+                    });
+                    const data = await res.json();
+                    if (data.avatarUrl) {
+                        currentUser.avatar = data.avatarUrl;
+                        renderUserArea();
+                    }
+                } catch {}
+            }
+        };
+
+        // 页面加载时自动获取用户信息
+        window.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const res = await fetch('/api/userinfo', {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    const data = await res.json();
+                    if (data.username) {
+                        isLoggedIn = true;
+                        currentUser = {
+                            name: data.username,
+                            nickname: data.nickname || data.username,
+                            avatar: data.avatarUrl || '',
+                            token
+                        };
+                        renderUserArea();
+                    }
+                } catch {}
+            }
+        });
+    </script>
+</body>
+</html>

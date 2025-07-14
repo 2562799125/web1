@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编写文章 - 红桥筑梦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- 顶部横幅 -->
+    <div class="bg-red-800 h-2 w-full"></div>
+    <!-- 标题区域 -->
+    <header class="bg-white py-4" style="background-image: url('tiananmen.jpg'); background-size: cover; background-position: center; background-color: rgba(255, 255, 255, 0.75); background-blend-mode: overlay;">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="制作红桥筑梦 logo.png" alt="Logo" class="h-16">
+                <h1 class="text-3xl font-bold text-red-800 ml-4">红桥筑梦</h1>
+            </div>
+            <div class="hidden md:block">
+                <form class="flex">
+                    <input type="text" class="border px-4 py-2 rounded-l" placeholder="搜索...">
+                    <button class="bg-red-800 text-white px-6 py-2 rounded-r">搜索</button>
+                </form>
+            </div>
+            <div id="userArea" class="ml-4">
+                <button id="loginBtn" class="px-6 py-2 bg-red-800 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium">登录</button>
+            </div>
+        </div>
+    </header>
+    <!-- 导航菜单 -->
+    <nav class="bg-red-800 text-white shadow-md">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-start space-x-8">
+                <li class="py-3 hover:bg-red-700 px-4"><a href="index.html">首页</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#about">中心概况</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#news">新闻动态</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#education">教育培训</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#research">研究成果</a></li>
+                <li class="py-3 hover:bg-red-700 px-4"><a href="#resources">资源共享</a></li>
+                <li class="py-3 hover:bg-red-700 px-4">
+                    <a href="map.html" class="flex items-center space-x-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                        <span>红色地图</span>
+                    </a>
+                </li>
+                <li class="py-3 hover:bg-yellow-600 px-4">
+                    <a href="write.html" class="flex items-center space-x-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 3.5a2.121 2.121 0 113 3L7 19.5 3 21l1.5-4L16.5 3.5z" />
+                        </svg>
+                        <span>编写</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- 编写文章表单 -->
+    <div class="container mx-auto mt-10 max-w-3xl">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-red-800 mb-6">编写新文章</h2>
+            <form id="writeForm" class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">文章标题</label>
+                    <input type="text" id="articleTitle" class="w-full border rounded px-4 py-2 focus:outline-none focus:border-red-800" placeholder="请输入文章标题" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">所属板块</label>
+                    <select id="articleSection" class="w-full border rounded px-4 py-2 focus:outline-none focus:border-red-800" required>
+                        <option value="">请选择板块</option>
+                        <option value="中心要闻">中心要闻</option>
+                        <option value="通知公告">通知公告</option>
+                        <option value="学习资料">学习资料</option>
+                        <option value="红色经典书籍">红色经典书籍</option>
+                        <option value="专属推荐">专属推荐</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">文章内容</label>
+                    <textarea id="articleContent" rows="10" class="w-full border rounded px-4 py-2 focus:outline-none focus:border-red-800" placeholder="请输入文章内容" required></textarea>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-red-800 text-white px-8 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium">发布</button>
+                </div>
+            </form>
+            <div id="writeSuccess" class="hidden mt-4 text-green-600 font-bold">文章发布成功！</div>
+        </div>
+    </div>
+    <!-- 底部版权信息 -->
+    <footer class="bg-red-800 text-white mt-8 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>版权所有 © 2023 红色文化传承基地 | 联系电话：xxx-xxxxxxxx</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('writeForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const title = document.getElementById('articleTitle').value;
+            const content = document.getElementById('articleContent').value;
+            const section = document.getElementById('articleSection').value;
+
+            // 你的 Render 后端 API 地址
+            const apiUrl = 'https://my-website-backend-xz5o.onrender.com/api/articles';
+
+            const res = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, content, section })
+            });
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('writeSuccess').textContent = `文章发布成功！所属板块：${section}`;
+                document.getElementById('writeSuccess').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('writeSuccess').classList.add('hidden');
+                    document.getElementById('writeForm').reset();
+                    document.getElementById('writeSuccess').textContent = '文章发布成功！';
+                }, 2000);
+            } else {
+                alert('发布失败');
+            }
+        };
+
+        async function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await fetch('https://your-backend.onrender.com/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            if (data.success) {
+                return data.url; // 这个URL可以存到文章里
+            } else {
+                alert('上传失败: ' + data.message);
+                return null;
+            }
+        }
+    </script>
+</body>
+</html> 
